@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bootstrap/bootstrap.css">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/todos" class="container mt-2 w-50">
+  <div class="mb-3">
+    <label class="form-label">Nombre Tarea</label>
+    <input name="nombre" type="text" class="form-control w-50" required/>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Descripción Tarea</label>
+    <input name="descripcion" type="text" class="form-control w-50" required/>
+  </div>
+  <button class="btn btn-primary">Agregar tarea</button>
+    <a href="/"><button type="button" class="btn btn-primary ms-2" >Volver</button></a>
+</form>
+</body>
+</html>

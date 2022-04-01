@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bootstrap/bootstrap.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="mt-3 container text-center">
+    <a href="/todo-create"><button type="button" class="btn btn-primary">Crear Tarea</button></a>
+  </div>
+    {{#if todos}}
+    <div class="container-fluid pt-5 w-50">
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Descripción</th>
+              <th scope="col">Fecha de creación</th>
+              <th scope="col">¿Eliminar?</th>
+            </tr>
+          </thead>
+          {{/if}}
+          <tbody>
+            {{#each todos}}
+                    <tr>
+                        <th>{{this.id}}</th>
+                        <td>{{this.title}}</td>
+                        <td>{{this.description}}</td>
+                        <td>{{this.fecha}}</td>
+                        <td><a href="/todo-delete?id={{this.id}}"><button type="button" class="btn btn-danger" >Eliminar</button></a></td>
+                    </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+</body>
+</html>
