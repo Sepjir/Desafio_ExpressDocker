@@ -4,6 +4,9 @@ const exphbs = require("express-handlebars")
 const moment = require("moment")
 const {nuevaTarea, getTodos, eliminarTarea} = require("./consultas")
 
+app.use(express.json())
+app.use(express.urlencoded({extended: true}))
+
 app.use("/bootstrap", express.static(__dirname + "/node_modules/bootstrap/dist/css"))
 app.use("/bootstrap", express.static(__dirname + "/node_modules/bootstrap/dist/js"))
 app.use("/public", express.static(__dirname + "/public/"))
@@ -23,15 +26,20 @@ app.get("/", async (_, res) => {
     })
 })
 
+app.get("/todos", async (_, res) => {
+    const tareas = await getTodos()
+    res.send(JSON.stringify(tareas))
+})
+
 app.get("/todo-create", (_, res) => {
     res.render("create", {
         layout: "create"
     })
 })
 
-app.get("/todos", async (req, res) => {
-    const {nombre, descripcion} = req.query
-    const fecha = moment().format('L')
+app.post("/todos", async (req, res) => {
+    const {nombre, descripcion} = req.body
+    const fecha = moment().locale("es").format('LLL')
     await nuevaTarea(nombre, descripcion, fecha)
     res.redirect("/")
 
